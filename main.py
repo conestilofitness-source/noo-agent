@@ -1,11 +1,11 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
 @app.get("/")
-def home():
-    return {"ok": True, "msg": "NÓO está listo 🚀"}
-
-@app.get("/ping")
-def ping():
-    return {"pong": True}
+def root():
+    return JSONResponse(
+        content={"ok": True, "msg": "Nó está listo 🚀"},
+        media_type="application/json; charset=utf-8"
+    )
