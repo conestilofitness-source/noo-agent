@@ -1,11 +1,17 @@
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse
+from starlette.responses import Response
+import json
 
 app = FastAPI()
 
 @app.get("/")
 def root():
-    return JSONResponse(
-        content={"ok": True, "msg": "Nó está listo 🚀"},
+    payload = {"ok": True, "msg": "Nóo está listo 🚀"}
+    return Response(
+        content=json.dumps(payload, ensure_ascii=False),
         media_type="application/json; charset=utf-8"
     )
+
+@app.get("/ping")
+def ping():
+    return {"pong": True}
